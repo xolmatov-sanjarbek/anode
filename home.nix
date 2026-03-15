@@ -43,7 +43,7 @@
 	};
       };
     };
-  }
+  };
 
   programs.git = {
 	enable = true;
