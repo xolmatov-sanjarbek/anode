@@ -3,11 +3,47 @@
 {
   imports = [
 	    inputs.walker.homeManagerModules.default
+	    inputs.nvf.homeManagerModules.default
             ];
 
   home.username = "sanjar";
   home.homeDirectory = "/home/sanjar";
   home.stateVersion = "25.11";
+
+  programs.nvf = {
+    enable = true;
+    settings = {
+      vim = {
+	theme = {
+	  enable = true;
+	  name = "catppuccin";
+	  style = "mocha";
+	};
+
+	statusline.lua-line.enable = true;
+	telescope.enable = true;
+	autocomplete.nvim-cmp.enable = true;
+
+	languages = {
+	  enableLSP = true;
+	  enableTreeSitter = true;
+
+	  rust.enable = true;
+	  ts.enable = true;
+	  nix.enable = true;
+	  python.enable = true;
+	  css.enable = true;
+	  go.enable = true;
+	};
+
+	options = {
+	  shiftwidth = 4;
+	  tabstop = 4;
+	  smartintent = true;
+	};
+      };
+    };
+  }
 
   programs.git = {
 	enable = true;
@@ -44,7 +80,6 @@
   home.file.".config/wlogout".source = config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/wlogout"; 
 
   home.packages = with pkgs; [
-    neovim
     gcc
     kitty
     hyprland
