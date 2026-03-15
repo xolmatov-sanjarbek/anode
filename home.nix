@@ -26,7 +26,7 @@
 
 	languages = {
 	  enableLSP = true;
-	  enableTreeSitter = true;
+	  enableTreesitter = true;
 
 	  rust.enable = true;
 	  ts.enable = true;
