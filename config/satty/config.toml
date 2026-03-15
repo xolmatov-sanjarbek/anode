@@ -1,0 +1,18 @@
+[general]
+# Updated from last time
+annotation-size-factor = 2
+copy-command = "wl-copy"
+initial-tool = "brush"
+early-exit = true
+
+# Create this NEW section for fonts
+[font]
+family = "JetBrainsMono Nerd Font"
+
+[color-palette]
+palette = [
+  "#94e2d5", # Teal
+  "#89dceb", # Sky
+  "#f38ba8", # Red
+  "#a6e3a1", # Green
+]
