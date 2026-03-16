@@ -24,7 +24,6 @@
     awww.url = "git+https://codeberg.org/LGFae/awww";
 
     nvf.url = "github:NotAShelf/nvf";
-    nvf.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, home-manager, hyprland, nvf, ... } @ inputs: {
