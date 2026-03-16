@@ -22,9 +22,12 @@
     };
     
     awww.url = "git+https://codeberg.org/LGFae/awww";
+
+    nvf.url = "github:NotAShelf/nvf";
+    nvf.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, ... } @ inputs: {
+  outputs = { self, nixpkgs, home-manager, hyprland, nvf, ... } @ inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
