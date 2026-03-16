@@ -78,7 +78,7 @@ programs.hyprland = {
     hyprpicker
     waypaper
     inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww
-    (pkgs.catppuccin-sddm.override {
+    (catppuccin-sddm.override {
         flavor = "mocha";
         accent = "mauve";
         font  = "Noto Sans";
