@@ -18,6 +18,7 @@
 services.xserver.enable = true;
 services.displayManager.sddm = {
     enable = true;
+    wayland.enable = true;
     theme = "catppuccin-mocha-mauve";
     package = pkgs.kdePackages.sddm;
     };
@@ -77,14 +78,14 @@ programs.hyprland = {
     hyprpicker
     waypaper
     inputs.awww.packages.${pkgs.stdenv.hostPlatform.system}.awww
-    pkgs.catppuccin-sddm.override {
+    (pkgs.catppuccin-sddm.override {
         flavor = "mocha";
         accent = "mauve";
         font  = "Noto Sans";
         fontSize = "9";
         background = "${/home/sanjar/wallpapers/trees.png}";
         loginBackground = true;
-    }
+    })
 ];
 
 xdg.portal = {
