@@ -11,10 +11,8 @@
 
   programs.git = {
     enable = true;
-    user = {
-	name = "Sanjar Xolmatov";
-	email = "xolmatovsanjarbek@proton.me";
-    };
+    userEmail = "xolmatovsanjarbek@proton.me";
+    userName = "Sanjar Xolmatov";
     settings = {
       init.defaultBranch = "main";
     };
