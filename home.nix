@@ -20,20 +20,52 @@
 	  style = "mocha";
 	};
 
-	statusline.lua-line.enable = true;
+	statusline.lualine.enable = true;
 	telescope.enable = true;
 	autocomplete.nvim-cmp.enable = true;
 
+	lsp = {
+	    enable = true;
+	};
+
 	languages = {
-	  enableLSP = true;
 	  enableTreesitter = true;
 
-	  rust.enable = true;
-	  ts.enable = true;
-	  nix.enable = true;
-	  python.enable = true;
-	  css.enable = true;
-	  go.enable = true;
+	  rust = {
+	      enable = true;
+	      lsp.enable = true;
+	      treesitter.enable = true;
+	  };
+	  ts = {
+	      enable = true;
+	      lsp.enable = true;
+	      lsp.servers = ["ts_ls"];
+	      treesitter.enable = true;
+	  };
+	  nix = {
+	      enable = true;
+	      lsp.enable = true;
+	      lsp.servers = ["nil"];
+	      treesitter.enable = true;
+	  };
+	  python = {
+	  	enable = true;
+	  	lsp.enable = true;
+		lsp.servers = ["pyright"];
+		treesitter.enable = true;
+	  };
+	  css = {
+	  	enable = true;
+	  	lsp.enable = true;
+		lsp.servers = ["cssls"];
+		treesitter.enable = true;
+	  };
+	  go = {
+	  	enable = true;
+	  	lsp.enable = true;
+		lsp.servers = ["gopls"];
+		treesitter.enable = true;
+	  };
 	};
 
 	options = {
