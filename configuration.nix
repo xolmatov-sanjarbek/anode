@@ -17,7 +17,6 @@
 
 services.xserver.enable = true;
 services.displayManager.sddm.enable = true;
- # programs.regreet.enable = true;
   services.printing.enable = true;
   services.printing.drivers = [ pkgs.epson-escpr ];
   services.avahi.enable = true;

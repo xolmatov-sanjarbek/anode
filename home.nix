@@ -11,9 +11,11 @@
 
   programs.git = {
     enable = true;
-    userEmail = "xolmatovsanjarbek@proton.me";
-    userName = "Sanjar Xolmatov";
     settings = {
+      user = {
+	name = "Sanjar Xolmatov";
+	email = "xolmatovsanjarbek@proton.me";
+      };
       init.defaultBranch = "main";
     };
   };
@@ -50,6 +52,8 @@
     slurp
     satty
     brave
+    swayosd
+    libnotify
   ];
   
   services.mako = {
@@ -57,6 +61,15 @@
     settings = {
       anchor = "top-right";
     };
+    font = "JetBrainsMono Nerd Font 10";
+    backgroundColor = "#1e1e2e"; # Catppuccin Mocha Base
+    textColor = "#cdd6f4";
+    borderColor = "#89b4fa";
+    borderSize = 2;
+    borderRadius = 8;
+    progressColor = "over #313244";
+    padding = "15";
+    defaultTimeout = 5000;
   };
 
   programs.wlogout.enable = true;
