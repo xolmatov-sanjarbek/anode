@@ -2,14 +2,9 @@
 
 {
   imports = [
-<<<<<<< HEAD
-    inputs.walker.homeManagerModules.default
-  ];
-=======
 	    inputs.walker.homeManagerModules.default
 	    inputs.nvf.homeManagerModules.default
             ];
->>>>>>> 568f0fdb7c05e5679f753e3778f650a72110efe9
 
   home.username = "sanjar";
   home.homeDirectory = "/home/sanjar";
@@ -45,6 +40,12 @@
 	  shiftwidth = 4;
 	  tabstop = 4;
 	  smartintent = true;
+	  termguicolors = true;
+	  scrolloff = 10;
+	  number = true;
+	  relativenumber = true;
+	  cursorline = true;
+	  clipboard = "unnamedplus";
 	};
       };
     };
