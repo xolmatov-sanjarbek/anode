@@ -71,7 +71,7 @@
 	options = {
 	  shiftwidth = 4;
 	  tabstop = 4;
-	  smartintent = true;
+	  smartindent = true;
 	  termguicolors = true;
 	  scrolloff = 10;
 	  number = true;
