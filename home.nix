@@ -2,28 +2,27 @@
 
 {
   imports = [
-	    inputs.walker.homeManagerModules.default
-            ];
+    inputs.walker.homeManagerModules.default
+  ];
 
   home.username = "sanjar";
   home.homeDirectory = "/home/sanjar";
-  home.stateVersion = "25.11";
+  home.stateVersion = "25.11"; # Ensure this matches your original install version
 
   programs.git = {
-	enable = true;
-  	userName  = "Sanjar Xolmatov";
-  	userEmail = "xolmatovsanjarbek@proton.me";
-  	extraConfig = {
-    		init.defaultBranch = "main";
-  	};
+    enable = true;
+    userName  = "Sanjar Xolmatov";
+    userEmail = "xolmatovsanjarbek@proton.me";
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
   };
+
   programs.home-manager.enable = true;
+  
   services.network-manager-applet.enable = true;
 
-  programs.waybar = {
-	enable = true;
-  };
-
+  programs.waybar.enable = true;
   programs.walker.enable = true;
 
   programs.bash = {
@@ -31,10 +30,9 @@
     shellAliases = {
       btw = "echo I use NixOS, btw";
     };
-  profileExtra = ''
-    . "${pkgs.nix}/etc/profile.d/nix.sh"
+    profileExtra = ''
+      . "${pkgs.nix}/etc/profile.d/nix.sh"
     '';
-
   };
 
   home.file.".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/hypr";
@@ -61,7 +59,5 @@
     };
   };
 
-programs.wlogout = {
-  enable = true;
-};
+  programs.wlogout.enable = true;
 }
