@@ -190,7 +190,7 @@
     qalculate-gtk # The GUI version (handy for complex math)
     btop # System monitor
     yazi # Fast file manager
-    du-dust # Disk usage (invoked with 'dust')
+    dust # Disk usage (invoked with 'dust')
     tldr
   ];
 
