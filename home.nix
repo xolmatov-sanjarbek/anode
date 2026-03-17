@@ -134,4 +134,5 @@
   };
 
   programs.wlogout.enable = true;
-}
+};
+} 
