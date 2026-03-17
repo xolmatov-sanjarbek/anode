@@ -140,7 +140,7 @@
     };
   };
 
-  xdg.configFile."lazygit/config.yml".text = ''
+  xdg.configFile."lazygit/config.yml".text = lib.mkForce ''
     git:
       pagers:
         - "delta --dark --paging=never"
@@ -151,6 +151,7 @@
         selectedRangeBgColor:
           - '#313244'
   '';
+
   programs.git = {
     enable = true;
     settings = {
