@@ -176,6 +176,8 @@
   };
 
   home.packages = with pkgs; [
+    wl-clipboard
+    bibata-cursors
     gcc
     kitty
     hyprland
@@ -193,6 +195,26 @@
     dust # Disk usage (invoked with 'dust')
     tldr
   ];
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true; # Optional, but good for compatibility
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+    size = 24;
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "catppuccin-mocha-mauve-standard";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "mauve" ];
+        size = "standard";
+        variant = "mocha";
+      };
+    };
+  };
 
   services.mako = {
     enable = true;
