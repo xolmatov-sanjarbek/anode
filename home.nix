@@ -34,7 +34,6 @@
         statusline.lualine.enable = true;
         telescope.enable = true;
         ui = {
-            trouble.enable = true; 
             noice.enable = true;
         };
         notify.nvim-notify.enable = true;
