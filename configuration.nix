@@ -16,7 +16,7 @@
     time.timeZone = "Asia/Tashkent";
 
     services.xserver.enable = true;
-    displayManager.sddm = {
+    services.sddm = {
         enable = true;
         theme = "catppuccin-mocha-mauve";
         package = pkgs.kdePackages.sddm;
