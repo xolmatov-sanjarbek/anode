@@ -38,7 +38,6 @@
             noice.enable = true;
         };
         notify.nvim-notify.enable = true;
-        otter-ls.enable = true;
         globals.updatetime = 300; 
 
         lsp = {
