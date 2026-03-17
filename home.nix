@@ -205,16 +205,17 @@
     enable = true;
     settings = {
       gui.theme = {
-        selectedLineBgColor = [ "#313244" ]; # Catppuccin Mocha surface
+        selectedLineBgColor = [ "#313244" ];
         selectedRangeBgColor = [ "#313244" ];
       };
-      git.pagers = {
-        colorArg = "always";
-        pager = "delta --dark --paging=never";
+      git = {
+        paging = {
+          colorArg = "always";
+          pager = "delta --dark --paging=never";
+        };
       };
     };
   };
-
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true; # Optional, but good for compatibility
