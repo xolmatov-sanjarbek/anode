@@ -82,7 +82,7 @@
           {
             key = "<leader>gg";
             mode = "n";
-            action = ":LazyGit<CR>";
+            action = "<cmd>lazygit<CR>";
             silent = true;
             desc = "Open LazyGit";
           }
@@ -138,6 +138,7 @@
       };
     };
   };
+
   programs.git = {
     enable = true;
     settings = {
@@ -153,6 +154,11 @@
   services.network-manager-applet.enable = true;
   programs.waybar.enable = true;
   programs.walker.enable = true;
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
 
   programs.bash = {
     enable = true;
@@ -187,7 +193,6 @@
     brave
     swayosd
     libnotify
-    lazygit
     libqalculate # The 'qalc' command-line tool
     qalculate-gtk # The GUI version (handy for complex math)
     btop # System monitor
@@ -195,6 +200,20 @@
     dust # Disk usage (invoked with 'dust')
     tldr
   ];
+
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      gui.theme = {
+        selectedLineBgColor = [ "#313244" ]; # Catppuccin Mocha surface
+        selectedRangeBgColor = [ "#313244" ];
+      };
+      git.paging = {
+        colorArg = "always";
+        pager = "delta --dark --paging=never";
+      };
+    };
+  };
 
   home.pointerCursor = {
     gtk.enable = true;
