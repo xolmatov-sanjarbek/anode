@@ -209,7 +209,7 @@
         selectedRangeBgColor = [ "#313244" ];
       };
       git = {
-        paging = {
+        pagers = {
           colorArg = "always";
           pager = "delta --dark --paging=never";
         };
