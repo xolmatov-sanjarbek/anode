@@ -215,18 +215,6 @@
 
   programs.lazygit = {
     enable = true;
-    settings = {
-      gui.theme = {
-        selectedLineBgColor = [ "#313244" ];
-        selectedRangeBgColor = [ "#313244" ];
-      };
-      git = {
-        pagers = {
-          colorArg = "always";
-          pager = "delta --dark --paging=never";
-        };
-      };
-    };
   };
   home.pointerCursor = {
     gtk.enable = true;
