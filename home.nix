@@ -34,7 +34,6 @@
         statusline.lualine.enable = true;
         telescope.enable = true;
         ui.trouble.enable = true; 
-        git.lazy-git.enable = true;
         ui.noice.enable = true;
         notify.nvim-notify.enable = true;
 
@@ -157,7 +156,7 @@
   };
 
   home.packages = with pkgs; [
-    gcc kitty hyprland grim slurp satty brave swayosd libnotify
+    gcc kitty hyprland grim slurp satty brave swayosd libnotify lazygit
   ];
 
   services.mako = {
