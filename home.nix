@@ -215,10 +215,23 @@
     tldr
   ];
 
-  programs.lazygit = {
-    enable = true;
-    settings = lib.mkForce { };
+  programs.lazygit.enable = true;
+
+  # 2. This settles the 'enable' conflict once and for all
+  home.file.".config/lazygit/config.yml" = lib.mkForce {
+    text = ''
+      git:
+        pagers:
+          - "delta --dark --paging=never"
+      gui:
+        theme:
+          selectedLineBgColor:
+            - '#313244'
+          selectedRangeBgColor:
+            - '#313244'
+    '';
   };
+
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true; # Optional, but good for compatibility
