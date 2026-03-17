@@ -61,21 +61,36 @@
           };
         };
 
-        luaConfigRC.diagnostic-hover = ''
+luaConfigRC.diagnostic-hover = ''
+          -- 1. Setup Diagnostic appearance and behavior
+          vim.diagnostic.config({
+            virtual_text = {
+              prefix = "●",
+              spacing = 4,
+            },
+            signs = true,
+            underline = true,
+            update_in_insert = false,
+            float = {
+              border = "rounded",
+              source = "always",
+              header = "",
+              prefix = "",
+            },
+          })
+
+          -- 2. Create the auto-hover popup
           vim.api.nvim_create_autocmd("CursorHold", {
             callback = function()
               vim.diagnostic.open_float(nil, {
                 focusable = false,
                 close_events = { "CursorMoved", "CursorMovedI", "BufHidden", "InsertCharPre" },
-                border = "rounded",
-                source = "always",
-                prefix = " ",
                 scope = "cursor",
               })
             end,
           })
         '';
-
+                
         languages = {
           rust.enable = true;
           ts.enable = true;

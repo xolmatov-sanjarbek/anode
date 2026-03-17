@@ -87,6 +87,7 @@
             loginBackground = true;
             }
         )
+        kdePackages.okular
     ];
 
     xdg.portal = {
