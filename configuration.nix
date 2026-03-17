@@ -95,6 +95,7 @@
       loginBackground = true;
     })
     kdePackages.okular
+    lazygit
   ];
 
   xdg.portal = {

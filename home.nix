@@ -141,18 +141,6 @@
     };
   };
 
-  xdg.configFile."lazygit/config.yml".text = lib.mkForce ''
-    git:
-      pagers:
-        - "delta --dark --paging=never"
-    gui:
-      theme:
-        selectedLineBgColor:
-          - '#313244'
-        selectedRangeBgColor:
-          - '#313244'
-  '';
-
   programs.git = {
     enable = true;
     settings = {
@@ -214,23 +202,6 @@
     dust # Disk usage (invoked with 'dust')
     tldr
   ];
-
-  programs.lazygit.enable = true;
-
-  # 2. This settles the 'enable' conflict once and for all
-  home.file.".config/lazygit/config.yml" = lib.mkForce {
-    text = ''
-      git:
-        pagers:
-          - "delta --dark --paging=never"
-      gui:
-        theme:
-          selectedLineBgColor:
-            - '#313244'
-          selectedRangeBgColor:
-            - '#313244'
-    '';
-  };
 
   home.pointerCursor = {
     gtk.enable = true;
