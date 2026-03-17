@@ -47,49 +47,6 @@
           lightbulb.enable = true;
           variableDebugInfo = true; # Fixed .enable tail
           showMessageIcons = "around";
-
-          setupOpts.handlers = {
-            "textDocument/publishDiagnostics" = ''
-              vim.lsp.with(
-                vim.lsp.diagnostic.on_publish_diagnostics, {
-                  virtual_text = true,
-                  signs = true,
-                  update_in_insert = false,
-                }
-              )
-            '';
-          };
-        };
-
-luaConfigRC.diagnostic-hover = ''
-          -- 1. Setup Diagnostic appearance and behavior
-          vim.diagnostic.config({
-            virtual_text = {
-              prefix = "●",
-              spacing = 4,
-            },
-            signs = true,
-            underline = true,
-            update_in_insert = false,
-            float = {
-              border = "rounded",
-              source = "always",
-              header = "",
-              prefix = "",
-            },
-          })
-
-          -- 2. Create the auto-hover popup
-          vim.api.nvim_create_autocmd("CursorHold", {
-            callback = function()
-              vim.diagnostic.open_float(nil, {
-                focusable = false,
-                close_events = { "CursorMoved", "CursorMovedI", "BufHidden", "InsertCharPre" },
-                scope = "cursor",
-              })
-            end,
-          })
-        '';
                 
         languages = {
           rust.enable = true;
