@@ -23,7 +23,6 @@
                 viAlias = true;
                 vimAlias = true;
                 preventJunkFiles = true;
-                useSystemClipboard = true;
 
                 debugger.nvim-dap.enable = true;
                 treesitter.enable = true;
@@ -88,6 +87,7 @@
                     number = true;
                     relativenumber = true;
                     cursorline = true;
+                    clipboard = "unnamedplus";
                 };
 
             keymaps = [
