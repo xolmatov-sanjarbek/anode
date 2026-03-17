@@ -33,11 +33,11 @@
         dashboard.alpha.enable = true;
         statusline.lualine.enable = true;
         telescope.enable = true;
-        ui.trouble.enable = true; 
-        ui.noice.enable = true;
+        ui = {
+            trouble.enable = true; 
+            noice.enable = true;
+        };
         notify.nvim-notify.enable = true;
-
-        # These were moved OUT of the lsp block
         otter-ls.enable = true;
         globals.updatetime = 300; 
 
@@ -46,19 +46,7 @@
           formatOnSave = true;
           lightbulb.enable = true;
           variableDebugInfo = true; # Fixed .enable tail
-          
-          # Diagnostics stays inside lsp
-          diagnostics = {
-            enable = true;
-            signs = true;
-            underline = true;
-            updateInInsert = false;
-            virtualText = {
-              enable = true;
-              spacing = 4;
-              prefix = "●";
-            };
-          };
+          showMessageIcons = "around";
 
           setupOpts.handlers = {
             "textDocument/publishDiagnostics" = ''
