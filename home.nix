@@ -208,7 +208,7 @@
         selectedLineBgColor = [ "#313244" ]; # Catppuccin Mocha surface
         selectedRangeBgColor = [ "#313244" ];
       };
-      git.paging = {
+      git.pagers = {
         colorArg = "always";
         pager = "delta --dark --paging=never";
       };
