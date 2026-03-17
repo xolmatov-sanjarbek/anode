@@ -270,4 +270,5 @@
     };
 
     programs.wlogout.enable = true;
+};
 }
