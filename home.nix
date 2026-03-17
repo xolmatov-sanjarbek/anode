@@ -217,6 +217,7 @@
 
   programs.lazygit = {
     enable = true;
+    settings = lib.mkForce { };
   };
   home.pointerCursor = {
     gtk.enable = true;
