@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -34,18 +39,17 @@
         statusline.lualine.enable = true;
         telescope.enable = true;
         ui = {
-            noice.enable = true;
+          noice.enable = true;
         };
         notify.nvim-notify.enable = true;
-        globals.updatetime = 300; 
+        globals.updatetime = 300;
 
         lsp = {
           enable = true;
           formatOnSave = true;
           lightbulb.enable = true;
-      };
+        };
 
-                
         languages = {
           rust.enable = true;
           ts.enable = true;
@@ -68,20 +72,72 @@
         };
 
         keymaps = [
-          { key = "<leader>e"; mode = "n"; action = ":NvimTreeToggle<CR>"; silent = true; desc = "Toggle NvimTree"; }
-          { key = "<leader>gg"; mode = "n"; action = ":LazyGit<CR>"; silent = true; desc = "Open LazyGit"; }
-          { key = "<leader>xx"; mode = "n"; action = ":Trouble diagnostics toggle<CR>"; desc = "Toggle Error List"; }
-          { key = "[d"; mode = "n"; action = "lua vim.diagnostic.goto_prev()"; desc = "Prev Diagnostic"; }
-          { key = "]d"; mode = "n"; action = "lua vim.diagnostic.goto_next()"; desc = "Next Diagnostic"; }
-          { key = "<leader>k"; mode = "n"; action = "lua vim.diagnostic.open_float()"; desc = "Show line diagnostics"; }
-          { key = ">"; mode = "v"; action = ">gv"; desc = "Indent right"; }
-          { key = "<"; mode = "v"; action = "<gv"; desc = "Indent left"; }
-          { key = "J"; mode = "v"; action = ":m '>+1<CR>gv=gv"; desc = "Move selection down"; }
-          { key = "K"; mode = "v"; action = ":m '<-2<CR>gv=gv"; desc = "Move selection up"; }
+          {
+            key = "<leader>e";
+            mode = "n";
+            action = ":NvimTreeToggle<CR>";
+            silent = true;
+            desc = "Toggle NvimTree";
+          }
+          {
+            key = "<leader>gg";
+            mode = "n";
+            action = ":LazyGit<CR>";
+            silent = true;
+            desc = "Open LazyGit";
+          }
+          {
+            key = "<leader>xx";
+            mode = "n";
+            action = ":Trouble diagnostics toggle<CR>";
+            desc = "Toggle Error List";
+          }
+          {
+            key = "[d";
+            mode = "n";
+            action = "lua vim.diagnostic.goto_prev()";
+            desc = "Prev Diagnostic";
+          }
+          {
+            key = "]d";
+            mode = "n";
+            action = "lua vim.diagnostic.goto_next()";
+            desc = "Next Diagnostic";
+          }
+          {
+            key = "<leader>k";
+            mode = "n";
+            action = "lua vim.diagnostic.open_float()";
+            desc = "Show line diagnostics";
+          }
+          {
+            key = ">";
+            mode = "v";
+            action = ">gv";
+            desc = "Indent right";
+          }
+          {
+            key = "<";
+            mode = "v";
+            action = "<gv";
+            desc = "Indent left";
+          }
+          {
+            key = "J";
+            mode = "v";
+            action = ":m '>+1<CR>gv=gv";
+            desc = "Move selection down";
+          }
+          {
+            key = "K";
+            mode = "v";
+            action = ":m '<-2<CR>gv=gv";
+            desc = "Move selection up";
+          }
         ];
+      };
     };
   };
-};
   programs.git = {
     enable = true;
     settings = {
@@ -100,27 +156,49 @@
 
   programs.bash = {
     enable = true;
-    shellAliases = { btw = "echo I use NixOS, btw"; };
-    profileExtra = '' . "${pkgs.nix}/etc/profile.d/nix.sh" '';
+    shellAliases = {
+      btw = "echo I use NixOS, btw";
+    };
+    profileExtra = ''. "${pkgs.nix}/etc/profile.d/nix.sh" '';
   };
 
   home.file = {
-    ".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/hypr";
-    ".config/waybar".source = config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/waybar";
-    ".config/satty".source = config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/satty";
-    ".config/kitty".source = config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/kitty";
-    ".config/wlogout".source = config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/wlogout";
+    ".config/hypr".source =
+      config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/hypr";
+    ".config/waybar".source =
+      config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/waybar";
+    ".config/satty".source =
+      config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/satty";
+    ".config/kitty".source =
+      config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/kitty";
+    ".config/wlogout".source =
+      config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/wlogout";
   };
 
   home.packages = with pkgs; [
-    gcc kitty hyprland grim slurp satty brave swayosd libnotify lazygit
+    gcc
+    kitty
+    hyprland
+    grim
+    slurp
+    satty
+    brave
+    swayosd
+    libnotify
+    lazygit
+    libqalculate # The 'qalc' command-line tool
+    qalculate-gtk # The GUI version (handy for complex math)
+    btop # System monitor
+    yazi # Fast file manager
+    du-dust # Disk usage (invoked with 'dust')
+    tldr
   ];
 
   services.mako = {
     enable = true;
     anchor = "top-right";
     font = "JetBrainsMono Nerd Font 10";
-    backgroundColor = "#1e1e2e"; 
+    backgroundColor = "#1e1e2e";
     textColor = "#cdd6f4";
     borderColor = "#89b4fa";
     borderSize = 2;
