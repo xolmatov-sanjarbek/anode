@@ -1,274 +1,178 @@
 { config, pkgs, inputs, ... }:
 
 {
-    imports = [
-	    inputs.walker.homeManagerModules.default
-	    inputs.nvf.homeManagerModules.default
-    ];
+  imports = [
+    inputs.walker.homeManagerModules.default
+    inputs.nvf.homeManagerModules.default
+  ];
 
-    home.username = "sanjar";
-    home.homeDirectory = "/home/sanjar";
-    home.stateVersion = "25.11"; # Ensure this matches your original install version
+  home.username = "sanjar";
+  home.homeDirectory = "/home/sanjar";
+  home.stateVersion = "25.11";
 
-    programs.nvf = {
-        enable = true;
-        settings = {
-            vim = {
-	            theme = {
-	                enable = true;
-	                name = "catppuccin";
-	                style = "mocha";
-	            };
+  programs.nvf = {
+    enable = true;
+    settings = {
+      vim = {
+        theme = {
+          enable = true;
+          name = "catppuccin";
+          style = "mocha";
+        };
 
-                viAlias = true;
-                vimAlias = true;
-                preventJunkFiles = true;
+        viAlias = true;
+        vimAlias = true;
+        preventJunkFiles = true;
 
-                debugger.nvim-dap.enable = true;
-                treesitter.enable = true;
-                autocomplete.nvim-cmp.enable = true;
-                filetree.nvimTree.enable = true;
-                binds.whichKey.enable = true;
-                git.enable = true;
-                dashboard.alpha.enable = true;
-                statusline.lualine.enable = true;
-                telescope.enable = true;
-                lsp = {
-                    enable = true;
-                    enableExtraDiagnostics = true;
-                    formatOnSave = true;
-                    lightbulb.enable = true;
-                    variableDebugInfo.enable = true;
+        debugger.nvim-dap.enable = true;
+        treesitter.enable = true;
+        autocomplete.nvim-cmp.enable = true;
+        filetree.nvimTree.enable = true;
+        binds.whichKey.enable = true;
+        git.enable = true;
+        dashboard.alpha.enable = true;
+        statusline.lualine.enable = true;
+        telescope.enable = true;
+        ui.trouble.enable = true; 
+        git.lazy-git.enable = true;
+        ui.noice.enable = true;
+        notify.nvim-notify.enable = true;
 
-                    otter-ls.enable = true;
-                    setupOpts.handlers = {
-                        "textDocument/publishDiagnostics" = ''
-                         vim.lsp.with(
-                            vim.lsp.diagnostic.on_publish_diagnostics, {
-                                virtual_text = true,
-                                signs = true,
-                                update_in_insert = false,
-                            }
-                        )
-                    '';
-                    };
+        # These were moved OUT of the lsp block
+        otter-ls.enable = true;
+        globals.updatetime = 300; 
 
-                    globals = {
-                        updateTime = 300;
-                    };
+        lsp = {
+          enable = true;
+          formatOnSave = true;
+          lightbulb.enable = true;
+          variableDebugInfo = true; # Fixed .enable tail
+          
+          # Diagnostics stays inside lsp
+          diagnostics = {
+            enable = true;
+            signs = true;
+            underline = true;
+            updateInInsert = false;
+            virtualText = {
+              enable = true;
+              spacing = 4;
+              prefix = "●";
+            };
+          };
 
-                    luaConfigRC.diagnostic-hover = ''
-                      vim.api.nvim_create_autocmd("CursorHold", {
-                        callback = function()
-                          vim.diagnostic.open_float(nil, {
-                            focusable = false,
-                            close_events = { "CursorMoved", "CursorMovedI", "BufHidden", "InsertCharPre" },
-                            border = "rounded",
-                            source = "always",
-                            prefix = " ",
-                            scope = "cursor",
-                          })
-                        end,
-                      })
-                    '';
+          setupOpts.handlers = {
+            "textDocument/publishDiagnostics" = ''
+              vim.lsp.with(
+                vim.lsp.diagnostic.on_publish_diagnostics, {
+                  virtual_text = true,
+                  signs = true,
+                  update_in_insert = false,
+                }
+              )
+            '';
+          };
+        };
 
-                    diagnostics = {
-                        enable = true;
-                        signs = true;
-                        underline = true;
-                        updateInInsert = false;
-                        virtualText = {
-                            enable = true;
-                            spacing = 4;
-                            prefix = "●"; # You can use "󰅚 " or other Nerd Font icons
-                        };
-                    };
-                ui.trouble.enable = true; 
-                git.lazy-git.enable = true;
+        luaConfigRC.diagnostic-hover = ''
+          vim.api.nvim_create_autocmd("CursorHold", {
+            callback = function()
+              vim.diagnostic.open_float(nil, {
+                focusable = false,
+                close_events = { "CursorMoved", "CursorMovedI", "BufHidden", "InsertCharPre" },
+                border = "rounded",
+                source = "always",
+                prefix = " ",
+                scope = "cursor",
+              })
+            end,
+          })
+        '';
 
-                ui.noice.enable = true;
-                notify.nvim-notify.enable = true;
+        languages = {
+          rust.enable = true;
+          ts.enable = true;
+          nix.enable = true;
+          python.enable = true;
+          css.enable = true;
+          go.enable = true;
+        };
 
-                languages = {
-                    rust = {
-                        enable = true;
-                        lsp.enable = true;
-                        treesitter.enable = true;
-                    };
-                    ts = {
-                        enable = true;
-                        lsp.enable = true;
-                        lsp.servers = ["ts_ls"];
-                        treesitter.enable = true;
-                    };
-                    nix = {
-                        enable = true;
-                        lsp.enable = true;
-                        lsp.servers = ["nil"];
-                        treesitter.enable = true;
-                    };
-                    python = {
-                        enable = true;
-                        lsp.enable = true;
-                        lsp.servers = ["pyright"];
-                        treesitter.enable = true;
-                    };
-                    css = {
-                        enable = true;
-                        lsp.enable = true;
-                        lsp.servers = ["cssls"];
-                        treesitter.enable = true;
-                    };
-                    go = {
-                        enable = true;
-                        lsp.enable = true;
-                        lsp.servers = ["gopls"];
-                        treesitter.enable = true;
-                    };
-                };
+        options = {
+          shiftwidth = 4;
+          tabstop = 4;
+          smartindent = true;
+          termguicolors = true;
+          scrolloff = 10;
+          number = true;
+          relativenumber = true;
+          cursorline = true;
+          clipboard = "unnamedplus";
+        };
 
-                options = {
-                    shiftwidth = 4;
-                    tabstop = 4;
-                    smartindent = true;
-                    termguicolors = true;
-                    scrolloff = 10;
-                    number = true;
-                    relativenumber = true;
-                    cursorline = true;
-                    clipboard = "unnamedplus";
-                };
-
-            keymaps = [
-                    {
-                        key = "<leader>e";
-                        mode = "n";
-                        action = ":NvimTreeToggle<CR>";
-                        silent = true;
-                        desc = "Toggle NvimTree";
-                    }
-                    {
-                        key = "<leader>gg";
-                        mode = "n";
-                        action = ":LazyGit<CR>";
-                        silent = true;
-                        desc = "Open LazyGit";
-                    }
-                        {
-    key = "<leader>xx";
-    mode = "n";
-    action = ":Trouble diagnostics toggle<CR>";
-    desc = "Toggle Error List (Trouble)";
-  }
-  {
-    key = "[d";
-    mode = "n";
-    action = "lua vim.diagnostic.goto_prev()";
-    desc = "Previous Diagnostic";
-  }
-  {
-    key = "]d";
-    mode = "n";
-    action = "lua vim.diagnostic.goto_next()";
-    desc = "Next Diagnostic";
-  }
-                        {
-  key = "<leader>k";
-  mode = "n";
-  action = "lua vim.diagnostic.open_float()";
-  desc = "Show line diagnostics";
-}
-{
-    key = ">";
-    mode = "v";
-    action = ">gv";
-    desc = "Indent right and re-select";
-  }
-  {
-    key = "<";
-    mode = "v";
-    action = "<gv";
-    desc = "Indent left and re-select";
-  }
-{
-    key = "J";
-    mode = "v";
-    action = ":m '>+1<CR>gv=gv";
-    desc = "Move selection down";
-  }
-  {
-    key = "K";
-    mode = "v";
-    action = ":m '<-2<CR>gv=gv";
-    desc = "Move selection up";
-  }
-                ];
+        keymaps = [
+          { key = "<leader>e"; mode = "n"; action = ":NvimTreeToggle<CR>"; silent = true; desc = "Toggle NvimTree"; }
+          { key = "<leader>gg"; mode = "n"; action = ":LazyGit<CR>"; silent = true; desc = "Open LazyGit"; }
+          { key = "<leader>xx"; mode = "n"; action = ":Trouble diagnostics toggle<CR>"; desc = "Toggle Error List"; }
+          { key = "[d"; mode = "n"; action = "lua vim.diagnostic.goto_prev()"; desc = "Prev Diagnostic"; }
+          { key = "]d"; mode = "n"; action = "lua vim.diagnostic.goto_next()"; desc = "Next Diagnostic"; }
+          { key = "<leader>k"; mode = "n"; action = "lua vim.diagnostic.open_float()"; desc = "Show line diagnostics"; }
+          { key = ">"; mode = "v"; action = ">gv"; desc = "Indent right"; }
+          { key = "<"; mode = "v"; action = "<gv"; desc = "Indent left"; }
+          { key = "J"; mode = "v"; action = ":m '>+1<CR>gv=gv"; desc = "Move selection down"; }
+          { key = "K"; mode = "v"; action = ":m '<-2<CR>gv=gv"; desc = "Move selection up"; }
+        ];
       };
     };
   };
 
-    programs.git = {
-        enable = true;
-        settings = {
-            user = {
-	            name = "Sanjar Xolmatov";
-	            email = "xolmatovsanjarbek@proton.me";
-            };
-        init.defaultBranch = "main";
-        };
+  programs.git = {
+    enable = true;
+    settings = {
+      user = {
+        name = "Sanjar Xolmatov";
+        email = "xolmatovsanjarbek@proton.me";
+      };
+      init.defaultBranch = "main";
     };
+  };
 
-    programs.home-manager.enable = true;
-  
-    services.network-manager-applet.enable = true;
+  programs.home-manager.enable = true;
+  services.network-manager-applet.enable = true;
+  programs.waybar.enable = true;
+  programs.walker.enable = true;
 
-    programs.waybar.enable = true;
-    programs.walker.enable = true;
+  programs.bash = {
+    enable = true;
+    shellAliases = { btw = "echo I use NixOS, btw"; };
+    profileExtra = '' . "${pkgs.nix}/etc/profile.d/nix.sh" '';
+  };
 
-    programs.bash = {
-        enable = true;
-        shellAliases = {
-            btw = "echo I use NixOS, btw";
-        };
-        profileExtra = ''
-            . "${pkgs.nix}/etc/profile.d/nix.sh"
-        '';
-    };
+  home.file = {
+    ".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/hypr";
+    ".config/waybar".source = config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/waybar";
+    ".config/satty".source = config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/satty";
+    ".config/kitty".source = config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/kitty";
+    ".config/wlogout".source = config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/wlogout";
+  };
 
-    home.file.".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/hypr";
-    home.file.".config/waybar".source = config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/waybar"; 
-    home.file.".config/satty".source = config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/satty"; 
-    home.file.".config/kitty".source = config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/kitty"; 
-    home.file.".config/wlogout".source = config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/wlogout"; 
+  home.packages = with pkgs; [
+    gcc kitty hyprland grim slurp satty brave swayosd libnotify
+  ];
 
-    home.packages = with pkgs; [
-        gcc
-        kitty
-        hyprland
-        grim
-        slurp
-        satty
-        brave
-        swayosd
-        libnotify
-    ];
-  
-    services.mako = {
-        enable = true;
-        settings = {
-            anchor = "top-right";
-            font = "JetBrainsMono Nerd Font 10";
-            background-color = "#1e1e2e"; # Catppuccin Mocha Base
-            text-color = "#cdd6f4";
-            border-color = "#89b4fa";
-            border-size = 2;
-            border-radius = 8;
-            progress-color = "over #313244";
-            padding = "15";
-            default-timeout = 5000;
-        };
-    };
+  services.mako = {
+    enable = true;
+    anchor = "top-right";
+    font = "JetBrainsMono Nerd Font 10";
+    backgroundColor = "#1e1e2e"; 
+    textColor = "#cdd6f4";
+    borderColor = "#89b4fa";
+    borderSize = 2;
+    borderRadius = 8;
+    progressColor = "over #313244";
+    padding = "15";
+    defaultTimeout = 5000;
+  };
 
-    programs.wlogout.enable = true;
-};
+  programs.wlogout.enable = true;
 }
