@@ -47,6 +47,8 @@
           lightbulb.enable = true;
           variableDebugInfo = true; # Fixed .enable tail
           showMessageIcons = "around";
+      };
+
                 
         languages = {
           rust.enable = true;
@@ -81,7 +83,6 @@
           { key = "J"; mode = "v"; action = ":m '>+1<CR>gv=gv"; desc = "Move selection down"; }
           { key = "K"; mode = "v"; action = ":m '<-2<CR>gv=gv"; desc = "Move selection up"; }
         ];
-      };
     };
   };
 };
