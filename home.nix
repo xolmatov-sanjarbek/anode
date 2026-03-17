@@ -135,6 +135,18 @@
             desc = "Move selection up";
           }
         ];
+
+        xdg.configFile."lazygit/config.yml".text = ''
+          git:
+            pagers:
+              - "delta --dark --paging=never"
+          gui:
+            theme:
+              selectedLineBgColor:
+                - '#313244'
+              selectedRangeBgColor:
+                - '#313244'
+        '';
       };
     };
   };
