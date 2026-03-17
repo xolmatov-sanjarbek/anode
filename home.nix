@@ -84,7 +84,7 @@
       };
     };
   };
-
+};
   programs.git = {
     enable = true;
     settings = {
@@ -134,5 +134,4 @@
   };
 
   programs.wlogout.enable = true;
-};
-} 
+}
