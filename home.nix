@@ -33,14 +33,63 @@
                 dashboard.alpha.enable = true;
                 statusline.lualine.enable = true;
                 telescope.enable = true;
-
                 lsp = {
                     enable = true;
-                };
+                    enableExtraDiagnostics = true;
+                    formatOnSave = true;
+                    lightbulb.enable = true;
+                    variableDebugInfo.enable = true;
+
+                    otter-ls.enable = true;
+                    setupOpts.handlers = {
+                        "textDocument/publishDiagnostics" = ''
+                         vim.lsp.with(
+                            vim.lsp.diagnostic.on_publish_diagnostics, {
+                                virtual_text = true,
+                                signs = true,
+                                update_in_insert = false,
+                            }
+                        )
+                    '';
+                    };
+
+                    globals = {
+                        updateTime = 300;
+                    };
+
+                    luaConfigRC.diagnostic-hover = ''
+                      vim.api.nvim_create_autocmd("CursorHold", {
+                        callback = function()
+                          vim.diagnostic.open_float(nil, {
+                            focusable = false,
+                            close_events = { "CursorMoved", "CursorMovedI", "BufHidden", "InsertCharPre" },
+                            border = "rounded",
+                            source = "always",
+                            prefix = " ",
+                            scope = "cursor",
+                          })
+                        end,
+                      })
+                    '';
+
+                    diagnostics = {
+                        enable = true;
+                        signs = true;
+                        underline = true;
+                        updateInInsert = false;
+                        virtualText = {
+                            enable = true;
+                            spacing = 4;
+                            prefix = "●"; # You can use "󰅚 " or other Nerd Font icons
+                        };
+                    };
+                ui.trouble.enable = true; 
+                git.lazy-git.enable = true;
+
+                ui.noice.enable = true;
+                notify.nvim-notify.enable = true;
 
                 languages = {
-                    enableExtraDiagnostics = true;
-
                     rust = {
                         enable = true;
                         lsp.enable = true;
@@ -98,6 +147,61 @@
                         silent = true;
                         desc = "Toggle NvimTree";
                     }
+                    {
+                        key = "<leader>gg";
+                        mode = "n";
+                        action = ":LazyGit<CR>";
+                        silent = true;
+                        desc = "Open LazyGit";
+                    }
+                        {
+    key = "<leader>xx";
+    mode = "n";
+    action = ":Trouble diagnostics toggle<CR>";
+    desc = "Toggle Error List (Trouble)";
+  }
+  {
+    key = "[d";
+    mode = "n";
+    action = "lua vim.diagnostic.goto_prev()";
+    desc = "Previous Diagnostic";
+  }
+  {
+    key = "]d";
+    mode = "n";
+    action = "lua vim.diagnostic.goto_next()";
+    desc = "Next Diagnostic";
+  }
+                        {
+  key = "<leader>k";
+  mode = "n";
+  action = "lua vim.diagnostic.open_float()";
+  desc = "Show line diagnostics";
+}
+{
+    key = ">";
+    mode = "v";
+    action = ">gv";
+    desc = "Indent right and re-select";
+  }
+  {
+    key = "<";
+    mode = "v";
+    action = "<gv";
+    desc = "Indent left and re-select";
+  }
+{
+    key = "J";
+    mode = "v";
+    action = ":m '>+1<CR>gv=gv";
+    desc = "Move selection down";
+  }
+  {
+    key = "K";
+    mode = "v";
+    action = ":m '<-2<CR>gv=gv";
+    desc = "Move selection up";
+  }
                 ];
       };
     };
