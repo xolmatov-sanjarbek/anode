@@ -46,7 +46,6 @@
           formatOnSave = true;
           lightbulb.enable = true;
           variableDebugInfo = true; # Fixed .enable tail
-          showMessageIcons = "around";
       };
 
                 
