@@ -179,10 +179,8 @@
 services.flatpak = {
   enable = true;
   packages = [
-    "com.spotify.Client"
-    "org.videolan.VLC"
-    "com.discordapp.Discord"
-  ];
+    "org.telegram.desktop"  
+];
 };
   programs.waybar.enable = true;
   programs.walker.enable = true;
