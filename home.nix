@@ -46,17 +46,40 @@
 
         lsp = {
           enable = true;
-          formatOnSave = true;
-          lightbulb.enable = true;
         };
 
         languages = {
-          rust.enable = true;
-          ts.enable = true;
-          nix.enable = true;
-          python.enable = true;
-          css.enable = true;
-          go.enable = true;
+          rust = {
+            enable = true;
+            lsp.enable = true;
+            treesitter.enable = true;
+          };
+          ts = {
+            enable = true;
+            lsp.enable = true;
+            lsp.servers = [ "ts_ls" ];
+            treesitter.enable = true;
+          };
+          nix = {
+            enable = true;
+            lsp.enable = true;
+            lsp.servers = [ "nil" ];
+          };
+          python = {
+            enable = true;
+            lsp.enable = true;
+            lsp.servers = [ "pyright" ];
+          };
+          css = {
+            enable = true;
+            lsp.enable = true;
+            lsp.servers = [ "cssls" ];
+          };
+          go = {
+            enable = true;
+            lsp.enable = true;
+            lsp.servers = [ "gopls" ];
+          };
         };
 
         options = {
