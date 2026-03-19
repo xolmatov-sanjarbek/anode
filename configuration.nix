@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   inputs,
   ...
@@ -32,7 +30,7 @@
   services.printing.drivers = [ pkgs.epson-escpr ];
   services.avahi.enable = true;
   services.avahi.nssmdns4 = true;
-
+  services.flatpak.enable = true;
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
