@@ -218,14 +218,14 @@ wayland.windowManager.hyprland = {
 # attrset can't express duplicate top-level keys.
     extraConfig = ''
 # suppress maximize events
-    windowrulev2 = suppressevent maximize, class:.*
+    windowrule = suppressevent maximize, class:.*
 
 # fix xwayland drags
-    windowrulev2 = nofocus, class:^$, title:^$, xwayland:1, floating:1
+    windowrule = nofocus, class:^$, title:^$, xwayland:1, floating:1
 
 # move hyprland-run window
-    windowrulev2 = float, class:hyprland-run
-    windowrulev2 = move 20 monitor_h-120, class:hyprland-run
+    windowrule = float, class:hyprland-run
+    windowrule = move 20 monitor_h-120, class:hyprland-run
     '';
     };
 }
