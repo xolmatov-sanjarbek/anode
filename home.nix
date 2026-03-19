@@ -224,16 +224,18 @@
 
   services.mako = {
     enable = true;
-    anchor = "top-right";
-    font = "JetBrainsMono Nerd Font 10";
-    backgroundColor = "#1e1e2e";
-    textColor = "#cdd6f4";
-    borderColor = "#89b4fa";
-    borderSize = 2;
-    borderRadius = 8;
-    progressColor = "over #313244";
-    padding = "15";
-    defaultTimeout = 5000;
+    settings = {
+      anchor = "top-right";
+      font = "JetBrainsMono Nerd Font 10";
+      backgroundColor = "#1e1e2e";
+      textColor = "#cdd6f4";
+      borderColor = "#89b4fa";
+      borderSize = 2;
+      borderRadius = 8;
+      progressColor = "over #313244";
+      padding = "15";
+      defaultTimeout = 5000;
+    };
   };
 
   programs.wlogout.enable = true;
