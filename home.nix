@@ -180,6 +180,10 @@
       config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/kitty";
     ".config/wlogout".source =
       config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/wlogout";
+    ".config/brave-flags.conf".text = ''
+      --disable-features=VaapiVideoDecodeLinuxGL
+      --use-gl=swiftshader
+    '';
   };
 
   home.packages = with pkgs; [

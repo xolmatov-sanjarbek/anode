@@ -96,6 +96,7 @@
     })
     kdePackages.okular
     lazygit
+    gwenview
   ];
 
   xdg.portal = {
