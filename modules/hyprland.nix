@@ -217,12 +217,15 @@ wayland.windowManager.hyprland = {
      # Named windowrule blocks go here as raw text because the settings
 # attrset can't express duplicate top-level keys.
 extraConfig = ''
-# fix xwayland drags
-windowrule = nofocus 1, class:^$, title:^$, xwayland:1, floating:1
+# fix xwayland drags (split into multiple rules)
+windowrule = nofocus, class:^$
+windowrule = nofocus, title:^$
+windowrule = nofocus, xwayland:1
+windowrule = nofocus, floating:1
 
 # move hyprland-run window
-windowrule = float 1, class:hyprland-run
-windowrule = move 20 900, class:hyprland-run
+windowrule = float, class:^(hyprland-run)$
+windowrule = move 20 900, class:^(hyprland-run)$
 '';
     };
 }
