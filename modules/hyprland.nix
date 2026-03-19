@@ -216,16 +216,13 @@ wayland.windowManager.hyprland = {
     };
      # Named windowrule blocks go here as raw text because the settings
 # attrset can't express duplicate top-level keys.
-    extraConfig = ''
-# suppress maximize events
-    windowrule = suppressevent maximize, class:.*
-
+extraConfig = ''
 # fix xwayland drags
-    windowrule = nofocus 1, class:^$, title:^$, xwayland:1, floating:1
+windowrule = nofocus 1, class:^$, title:^$, xwayland:1, floating:1
 
 # move hyprland-run window
-    windowrule = floating 1, class:hyprland-run
-    windowrule = move 20 900, class:hyprland-run
-    '';
+windowrule = floating 1, class:hyprland-run
+windowrule = move 20 900, class:hyprland-run
+'';
     };
 }
