@@ -176,9 +176,6 @@
 
   programs.home-manager.enable = true;
   services.network-manager-applet.enable = true;
-services.flatpak = {
-  enable = true;
-};
   programs.waybar.enable = true;
   programs.walker.enable = true;
 
