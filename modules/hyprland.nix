@@ -24,10 +24,10 @@ wayland.windowManager.hyprland = {
 ### ENVIRONMENT VARIABLES ###
 #############################
      env = [
-    "XCURSOR_SIZE,24"
-    "HYPRCURSOR_SIZE,24"
-    "LIBVA_DRIVER_NAME,iHD"
-    "MOZ_ENABLE_WAYLAND,1"
+    "XCURSOR_SIZE=24"
+    "HYPRCURSOR_SIZE=24"
+    "LIBVA_DRIVER_NAME=iHD"
+    "MOZ_ENABLE_WAYLAND=1"
     ];
      #####################
 ### LOOK AND FEEL ###
@@ -65,7 +65,7 @@ wayland.windowManager.hyprland = {
     };
     };
     animations = {
-    enabled = "yes, please :)";
+    enabled = true;
     bezier = [
     "easeOutQuint, 0.23, 1, 0.32, 1"
     "easeInOutCubic, 0.65, 0.05, 0.36, 1"
@@ -118,7 +118,7 @@ wayland.windowManager.hyprland = {
     natural_scroll = false;
     };
     };
-    gesture = "3, horizontal, workspace";
+    gesture = ["3, horizontal, workspace"];
     device = {name = "epic-mouse-v1";
     sensitivity = -0.5;
     };
@@ -142,8 +142,7 @@ wayland.windowManager.hyprland = {
     "$mainMod, T, exec, $terminal"
     "$mainMod, B, exec, $browser"
     "$mainMod, Q, killactive,"
-    "$mainMod, M, exec, command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown ||
-    hyprctl dispatch exit"
+    "$mainMod, M, exec, sh -c 'command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit'"
     "$mainMod, E, exec, $fileManager"
     "$mainMod, V, togglefloating,"
     "$mainMod, SPACE, exec, $menu"
@@ -156,14 +155,13 @@ wayland.windowManager.hyprland = {
     "$mainMod, PRINT, exec, hyprpicker -a"
     ", PRINT, exec, grim -g \"$(slurp)\" - | satty --filename -"
     "SHIFT, PRINT, exec, grim - | satty --filename -"
-    "CTRL, PRINT, exec, hyprctl -j activewindow | jq -r '\"\\(.at[0]),\\(.at[1]) \\(.size[0])x\
-    (.size[1])\"' | grim -g - - | satty --filename -"
+    "CTRL, PRINT, exec, sh -c 'hyprctl -j activewindow | jq -r \"\\(.at[0]),\\(.at[1]) \\(.size[0])x\\(.size[1])\" | grim -g - - | satty --filename -'"
      # Move focus
     "$mainMod, left, movefocus, l"
     "$mainMod, right, movefocus, r"
     "$mainMod, up, movefocus, u"
     "$mainMod, down, movefocus, d"
-     # Switch workspaces       
+     # Switch workspaces
     "$mainMod, 1, workspace, 1"
     "$mainMod, 2, workspace, 2"
     "$mainMod, 3, workspace, 3"
@@ -219,27 +217,15 @@ wayland.windowManager.hyprland = {
      # Named windowrule blocks go here as raw text because the settings
 # attrset can't express duplicate top-level keys.
     extraConfig = ''
-    windowrule {
-    name = suppress-maximize-events
-    match:class = .*
-    suppress_event = maximize
-    }
-      windowrule {
-    name = fix-xwayland-drags
-    match:class = ^$
-    match:title = ^$
-    match:xwayland = true
-    match:float = true
-    match:fullscreen = false
-    match:pin = false
-    no_focus = true
-    }
-      windowrule {
-    name = move-hyprland-run
-    match:class = hyprland-run
-    move = 20 monitor_h-120
-    float = yes
-    }
+# suppress maximize events
+    windowrulev2 = suppressevent maximize, class:.*
+
+# fix xwayland drags
+    windowrulev2 = nofocus, class:^$, title:^$, xwayland:1, floating:1
+
+# move hyprland-run window
+    windowrulev2 = float, class:hyprland-run
+    windowrulev2 = move 20 monitor_h-120, class:hyprland-run
     '';
     };
 }
