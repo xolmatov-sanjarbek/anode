@@ -3,10 +3,18 @@
   inputs,
   ...
 }:
+let
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
+in {
+  imports = [ 
+    ./hardware-configuration.nix 
+    (import "${home-manager}/nixos")
+    ];
 
-{
-  imports = [ ./hardware-configuration.nix ];
-
+  home-manager.users.sanjar = { pkgs, ... }: {
+    home.stateVersion = "25.11";
+    # your HM config here
+  };
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
