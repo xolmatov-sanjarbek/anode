@@ -30,7 +30,12 @@
   services.printing.drivers = [ pkgs.epson-escpr ];
   services.avahi.enable = true;
   services.avahi.nssmdns4 = true;
-  services.flatpak.enable = true;
+  services.flatpak = { 
+    enable = true;
+    packages = [
+        "org.telegram.desktop"
+    ];
+    };
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -95,6 +100,8 @@
     kdePackages.okular
     lazygit
     qimgv
+    rustc
+    cargo
   ];
 
   xdg.portal = {
