@@ -32,9 +32,6 @@
   services.avahi.nssmdns4 = true;
   services.flatpak = { 
     enable = true;
-    packages = [
-        "org.telegram.desktop"
-    ];
     };
   programs.hyprland = {
     enable = true;

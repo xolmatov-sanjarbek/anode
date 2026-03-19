@@ -176,6 +176,14 @@
 
   programs.home-manager.enable = true;
   services.network-manager-applet.enable = true;
+services.flatpak = {
+  enable = true;
+  packages = [
+    "com.spotify.Client"
+    "org.videolan.VLC"
+    "com.discordapp.Discord"
+  ];
+};
   programs.waybar.enable = true;
   programs.walker.enable = true;
 
