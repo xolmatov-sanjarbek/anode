@@ -197,8 +197,6 @@
   };
 
   home.file = {
-    ".config/hypr".source =
-      config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/hypr";
     ".config/waybar".source =
       config.lib.file.mkOutOfStoreSymlink "/home/sanjar/nixos-dotfiles/config/waybar";
     ".config/satty".source =
