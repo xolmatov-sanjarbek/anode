@@ -218,10 +218,10 @@ wayland.windowManager.hyprland = {
 # attrset can't express duplicate top-level keys.
 extraConfig = ''
 # fix xwayland drags
-windowrule = nofocus, class:^$, title:^$, xwayland:1, floating:1
+windowrule = nofocus 1, class:^$, title:^$, xwayland:1, floating:1
 
 # move hyprland-run window
-windowrule = float, class:hyprland-run
+windowrule = float 1, class:hyprland-run
 windowrule = move 20 900, class:hyprland-run
 '';
     };
