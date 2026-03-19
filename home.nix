@@ -178,9 +178,6 @@
   services.network-manager-applet.enable = true;
 services.flatpak = {
   enable = true;
-  packages = [
-    "org.telegram.desktop"  
-];
 };
   programs.waybar.enable = true;
   programs.walker.enable = true;
