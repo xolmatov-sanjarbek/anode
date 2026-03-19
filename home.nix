@@ -9,7 +9,8 @@
   imports = [
     inputs.walker.homeManagerModules.default
     inputs.nvf.homeManagerModules.default
-  ];
+    ./hyprland.nix
+    ];
 
   home.username = "sanjar";
   home.homeDirectory = "/home/sanjar";
