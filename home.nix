@@ -159,12 +159,15 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
+    LIBVA_DRIVER_NAME = "iHD";
   };
 
   programs.bash = {
     enable = true;
     shellAliases = {
       btw = "echo I use NixOS, btw";
+      lg = "lazygit";
+      update = "sudo nixos-rebuild switch --flake .";
     };
     profileExtra = ''. "${pkgs.nix}/etc/profile.d/nix.sh" '';
   };

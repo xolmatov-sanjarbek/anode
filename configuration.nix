@@ -122,5 +122,13 @@
     "flakes"
   ];
 
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # VA-API for Tiger Lake / Iris Xe
+      intel-compute-runtime
+    ];
+  };
+
   system.stateVersion = "25.11"; # Synced with home-manager for consistency
 }
