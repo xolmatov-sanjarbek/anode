@@ -37,17 +37,17 @@
   },
 
   "pulseaudio": {
-    "format": "{volume}% {icon}",
-    "format-muted": "󰝟",
+    "format": "{volume}%  ",
+    "format-muted": "󰝟 ",
     "on-click": "pavucontrol"
   },
 
   "backlight": {
-    "format": "{percent}% {icon}"
+    "format": "{percent}%  "
   },
 
   "battery": {
-    "format": "{capacity}% {icon}",
+    "format": "{capacity}%  ",
     "format-charging": "{capacity}% ⚡",
     "states": {
       "warning": 30,
@@ -56,17 +56,17 @@
   },
 
   "network": {
-    "format-wifi": "",
-    "format-ethernet": "󰈀",
+    "format-wifi": " ",
+    "format-ethernet": "󰈀 ",
     "format-disconnected": "⚠",
-    "on-click": "networkmanager_dmenu"
+    "on-click": "network-manager-applet"
   },
 
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
-      "activated": "",
-      "deactivated": ""
+      "activated": " ",
+      "deactivated": " "
     }
   },
 
