@@ -19,7 +19,6 @@
     "pulseaudio",
     "backlight",
     "battery",
-    "network",
     "clock",
     "tray",
     "custom/power"
