@@ -1,248 +1,72 @@
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: JetBrainsMono Nerd Font, FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 16px;
+  font-family: JetBrainsMono Nerd Font, FontAwesome;
+  font-size: 14px;
+  border: none;
 }
 
+/* bar */
 window#waybar {
-    background-color: transparent;
-    color: #cdd6f4;
-    transition-property: background-color;
-    transition-duration: .5s;
+  background: transparent;
+  color: #cdd6f4;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
-}
-
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
-}
-
-button {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 25%;
-    background-color: #313244;
-    margin: 20px;
-    border-radius: 12px;
-}
-
-button:hover, button:focus, button:active {
-    background-color: #94e2d5;
-    color: #1e1e2e;
-}
-
-#workspaces button {
-    padding: 0 6px;
-    margin: 0 2px;
-    background-color: transparent;
-    color: #ffffff;
-}
-
-#workspaces button:hover {
-    background: #94e2d5;
-}
-
-#workspaces button.focused, #workspaces button.active {
-    background-color: #b4befe;
-    color: #45475a;
-    box-shadow: inset 0 3px #ffffff;
-}
-
-#workspaces button.urgent {
-    background-color: #eb4d4b;
-}
-
-#mode {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
-}
-
+/* universal module style */
 #clock,
 #battery,
 #backlight,
 #network,
 #pulseaudio,
-#wireplumber,
 #custom-media,
 #custom-power,
-#idle_inhibitor,
-#mpd {
-    padding: 5px;
-    color: #ffffff;
-    border-radius: 12px;
+#idle_inhibitor {
+  background: #313244;
+  padding: 0 12px;
+  margin: 4px;
+  border-radius: 10px;
+  color: #b4befe;
+  transition: 0.2s;
 }
 
-
+/* hover */
 #clock:hover,
 #battery:hover,
 #backlight:hover,
 #network:hover,
 #pulseaudio:hover,
-#wireplumber:hover,
 #custom-media:hover,
-#idle_inhibitor:hover,
-#mpd:hover {
-    background-color: #a6adc8;
-    color: #11111b;
+#idle_inhibitor:hover {
+  background: #a6adc8;
+  color: #11111b;
+}
+
+/* workspaces */
+#workspaces button {
+  padding: 0 8px;
+  margin: 0 2px;
+  border-radius: 8px;
+  color: #cdd6f4;
+}
+
+#workspaces button.active {
+  background: #b4befe;
+  color: #1e1e2e;
+}
+
+/* special modules */
+#custom-nixos {
+  font-size: 20px;
+  margin: 0 8px;
 }
 
 #custom-power:hover {
-    color: #f38ba8;
+  color: #f38ba8;
 }
 
-#custom-nixos {
-    color: #bac2de;
-    font-size: 28px;
+/* battery states */
+#battery.warning {
+  color: #f9e2af;
 }
 
-#window,
-#workspaces {
-    color: #cba6f7;
-    margin: 0 4px;
+#battery.critical {
+  color: #f38ba8;
 }
-
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
-}
-
-#clock {
-    color: #b4befe; /* Lavender */
-    background-color: #313244;
-    border-radius: 10px;
-    padding: 0 12px;
-    margin: 4px;
-}
-
-#battery {
-    color: #b4befe; /* Lavender */
-    background-color: #313244;
-    border-radius: 10px;
-    padding: 0 12px;
-    margin: 4px;
-}
-
-#battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
-}
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}
-
-/* Using steps() instead of linear as a timing function to limit cpu usage */
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-label:focus {
-    background-color: #000000;
-}
-
-#backlight {
-    color: #b4befe; /* Lavender */
-    background-color: #313244;
-    border-radius: 10px;
-    padding: 0 12px;
-    margin: 4px;
-}
-
-#network {
-    color: #b4befe; /* Lavender */
-    background-color: #313244;
-    border-radius: 10px;
-    padding: 0 12px;
-    margin: 4px;
-}
-
-#network.disconnected {
-    color: #f38ba8; /* Red */
-}
-#pulseaudio {
-    color: #b4befe; /* Lavender */
-    background-color: #313244;
-    border-radius: 10px;
-    padding: 0 12px;
-    margin: 4px;
-}
-
-#pulseaudio.muted {
-    color: #f38ba8; /* Red */
-}
-
-#wireplumber {
-    background-color: #fff0f5;
-    color: #000000;
-}
-
-#wireplumber.muted {
-    background-color: #f53c3c;
-}
-
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
-
-#idle_inhibitor {
-    color: #b4befe; /* Lavender */
-    background-color: #313244;
-    border-radius: 10px;
-    padding: 0 12px;
-    margin: 4px;
-}
-
-#idle_inhibitor.activated {
-    background-color: #74c7ec;
-    color: #2d3436;
-}
-
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
-
-

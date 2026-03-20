@@ -1,164 +1,84 @@
 {
-    "layer": "top",
-    "position": "top",
-    "height": 40,
-    "spacing": 4, // Gaps between modules (4px)
-    "modules-left": [
-    	"custom/nixos",
-        "hyprland/workspaces",
-        "custom/media"
-    ],
-    "modules-center": [
-        "hyprland/window"
-    ],
-    "modules-right": [
-        "mpd",
-        "idle_inhibitor",
-        "pulseaudio",
-	"tray",
-        "backlight",
-        "battery",
-        "clock",
-        "custom/power"
-    ],
+  "layer": "top",
+  "position": "top",
+  "height": 34,
+  "spacing": 6,
 
-     "hyprland/workspaces": {
-     	"persistent-workspaces": {
-            "*": 5
-        },
-        "format": "{name}"
-     },
+  "modules-left": [
+    "custom/nixos",
+    "hyprland/workspaces",
+    "custom/media"
+  ],
 
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 5,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "  ",
-            "deactivated": "  "
-        }
-    },
+  "modules-center": [
+    "hyprland/window"
+  ],
 
-    "tray": {
-     	"icon-size": 21,
-	"spacing": 10
-    },
+  "modules-right": [
+    "idle_inhibitor",
+    "pulseaudio",
+    "backlight",
+    "battery",
+    "network",
+    "clock",
+    "tray",
+    "custom/power"
+  ],
 
-    "clock": {
-        "timezone": "Asia/Tashkent",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
-    },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-    "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
-    },
+  "hyprland/workspaces": {
+    "persistent-workspaces": { "*": 5 },
+    "format": "{name}"
+  },
 
-    "custom/nixos": {
-	"format": "  ",
-	"tooltip": false,
-	"on-click": "walker"
-    },
+  "clock": {
+    "timezone": "Asia/Tashkent",
+    "format": "{:%H:%M}",
+    "format-alt": "{:%Y-%m-%d}"
+  },
 
-    "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}%  ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-    },
-    "power-profiles-daemon": {
-      "format": "{icon}",
-      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-      "tooltip": true,
-      "format-icons": {
-        "default": "",
-        "performance": "",
-        "balanced": "",
-        "power-saver": ""
-      }
-    },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": " ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{essid}",
-    	"on-click": "networkmanager_dmenu"
-    },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    },
-    "custom/media": {
-        "format": "{icon} {text}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    },
-    "custom/power": {
-	"format": "  ",
-    	"on-click": "wlogout",
-    	"tooltip": false
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-muted": "󰝟",
+    "on-click": "pavucontrol"
+  },
+
+  "backlight": {
+    "format": "{percent}% {icon}"
+  },
+
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ⚡",
+    "states": {
+      "warning": 30,
+      "critical": 15
     }
+  },
+
+  "network": {
+    "format-wifi": "",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "⚠",
+    "on-click": "networkmanager_dmenu"
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+
+  "custom/nixos": {
+    "format": "",
+    "on-click": "walker",
+    "tooltip": false
+  },
+
+  "custom/power": {
+    "format": "",
+    "on-click": "wlogout",
+    "tooltip": false
+  }
 }
